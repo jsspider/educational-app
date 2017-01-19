@@ -4,7 +4,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { TestComponent } from './test.component';
 
 const appRoutes: Routes = [
-    { path: 'test', component: TestComponent }
+    { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule' }
 ];
 
 @NgModule({

@@ -1,0 +1,38 @@
+.navigation-container {
+    height: 100vh;
+    background: #393952;
+
+    .nav-item {
+        width: 100%;
+        height: 10%;
+        border: 5px solid #fff;
+        border-radius: 50px;
+
+        a {
+            height: 100%;
+            font-size: 30px;
+            color: #78788d;
+            transition: font-size 0.25s ease-in;
+
+            &:focus {
+                background-color: initial;
+            }
+            
+            &:hover {
+                font-size: 60px;
+                color: #fff;
+                background-color: initial;
+            }
+        }
+    }
+
+    .nav-item.active {
+        color: #fff;
+
+        a {
+            background-color: initial;
+            color: #fff;
+            font-size: 60px;
+        }
+    }
+}

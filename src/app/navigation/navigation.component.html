@@ -1,0 +1,10 @@
+<ul class="nav nav-pills navigation-container">
+  <li *ngFor="let route of routes"
+      routerLinkActive="active"
+      role="presentation"
+      class="nav-item">
+    <a [routerLink]="route.link">
+      <i [ngClass]="route.icon"></i>  
+    </a>
+  </li>
+</ul>
