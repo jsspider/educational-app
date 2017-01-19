@@ -4,7 +4,10 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { TestComponent } from './test.component';
 
 const appRoutes: Routes = [
-    { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule' }
+    { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
+    { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule' },
+    { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' },
+    { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({

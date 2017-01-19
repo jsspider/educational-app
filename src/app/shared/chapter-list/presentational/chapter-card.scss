@@ -1,0 +1,32 @@
+.chapter-card-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 20px 0;
+
+    .card-icon {
+        font-size: 30px;
+    }
+
+    .card-content {
+        font-family: 'Arial Narrow';
+
+        h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+    
+    &.completed {
+        border-color: green;
+
+        .card-icon {
+            color: green;
+        }
+    }
+}
