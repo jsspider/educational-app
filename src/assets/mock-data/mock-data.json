@@ -1,3 +1,44 @@
 [
-  {"res": "data"}
+    {
+        "id": 0,
+        "active": false,
+        "completed": true,
+        "name": "Chapter 1",
+        "description": "Description of the chapter 1",
+        "items": [
+            "item1",
+            "item2",
+            "item3",
+            "item4",
+            "item5"
+        ]
+    },
+    {
+        "id": 1,
+        "active": true,
+        "completed": false,
+        "name": "Chapter 2",
+        "description": "Description of the chapter 2",
+        "items": [
+            "item1",
+            "item2",
+            "item3",
+            "item4",
+            "item5"
+        ]
+    },
+    {
+        "id": 2,
+        "active": false,
+        "completed": false,
+        "name": "Chapter 3",
+        "description": "Description of the chapter 3",
+        "items": [
+            "item1",
+            "item2",
+            "item3",
+            "item4",
+            "item5"
+        ]
+    }
 ]
