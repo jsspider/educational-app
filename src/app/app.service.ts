@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { ChaptersApiService } from './core/services';
+
 export type InternalStateType = {
   [key: string]: any
 };
@@ -8,6 +10,10 @@ export type InternalStateType = {
 export class AppState {
 
   public _state: InternalStateType = { };
+
+  constructor (private chaptersApiService: ChaptersApiService) {
+    this.init();
+  }
 
   // already return a clone of the current state
   public get state() {
@@ -32,5 +38,14 @@ export class AppState {
   private _clone(object: InternalStateType) {
     // simple object clone
     return JSON.parse(JSON.stringify( object ));
+  }
+
+  private init() {
+    // Populates localStorage chapters entry with mocked data if it's empty.
+    if (!this.chaptersApiService.getChapters()) {
+      this.chaptersApiService.fetchChapters().subscribe((res) => {
+        this.chaptersApiService.saveChapters(res);
+      });
+    }
   }
 }
