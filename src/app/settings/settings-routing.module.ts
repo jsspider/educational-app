@@ -13,4 +13,4 @@ import { SettingsComponent } from './settings.component';
     RouterModule
   ]
 })
-export class SettingsRoutingModule {}
+export class SettingsRoutingModule { }

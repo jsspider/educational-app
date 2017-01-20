@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.scss']
 })
 
-export class ProfileComponent {
-
-  constructor() {}
-}
+export class ProfileComponent { }

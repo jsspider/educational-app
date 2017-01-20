@@ -7,7 +7,7 @@ export * from './generic-http.service';
 export * from './generic-localStorage.service';
 
 export const appServices = [
-    ChaptersApiService,
-    GenericHttpService,
-    GenericLocalStorageService
+  ChaptersApiService,
+  GenericHttpService,
+  GenericLocalStorageService
 ];

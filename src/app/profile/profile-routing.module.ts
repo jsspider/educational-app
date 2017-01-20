@@ -13,4 +13,4 @@ import { ProfileComponent } from './profile.component';
     RouterModule
   ]
 })
-export class ProfileRoutingModule {}
+export class ProfileRoutingModule { }

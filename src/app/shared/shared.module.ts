@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 
-import { ChapterCardComponent } from './chapter-list/presentational/chapter-card.component';
+import {
+    ChapterCardComponent
+} from './chapter-list/presentational/chapter-card.component';
 
 @NgModule({
   imports: [],
   declarations: [
-      ChapterCardComponent
+    ChapterCardComponent
   ],
   exports: [
-      ChapterCardComponent
+    ChapterCardComponent
   ],
   providers: []
 })

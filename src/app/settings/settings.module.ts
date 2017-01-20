@@ -5,7 +5,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
 
 @NgModule({
   imports: [
-      SettingsRoutingModule
+    SettingsRoutingModule
   ],
   declarations: [
     SettingsComponent

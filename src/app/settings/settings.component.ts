@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.scss']
 })
 
-export class SettingsComponent {
-
-  constructor() {}
-}
+export class SettingsComponent { }
