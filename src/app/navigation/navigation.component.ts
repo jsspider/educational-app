@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 
 export class NavigationComponent {
     private routes = [
-      { link: '/home', icon: 'glyphicon glyphicon-home'},
-      { link: '/settings', icon: 'glyphicon glyphicon-cog' },
-      { link: '/profile', icon: 'glyphicon glyphicon-user' }
+      { link: '/home', icon: 'glyphicon glyphicon-home', label: 'Home'},
+      { link: '/settings', icon: 'glyphicon glyphicon-cog', label: 'Settings' },
+      { link: '/profile', icon: 'glyphicon glyphicon-user', label: 'Profile' }
     ];
 }
