@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { CategoryListComponent } from './category-list';
+import { CategoryCardComponent } from './category-card';
 
 @NgModule({
   imports: [
-    HomeRoutingModule,
-    SharedModule
+    CommonModule,
+    HomeRoutingModule
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    CategoryListComponent,
+    CategoryCardComponent
   ],
   exports: [
     HomeComponent

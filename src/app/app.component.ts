@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AppService } from './app.service';
+
 @Component({
   selector: 'app',
   styleUrls: ['./app.component.scss'],
@@ -15,4 +17,6 @@ import { Component } from '@angular/core';
   `
 })
 
-export class AppComponent { }
+export class AppComponent {
+  constructor (private appService: AppService) {}
+}

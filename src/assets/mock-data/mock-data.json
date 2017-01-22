@@ -3,7 +3,8 @@
         "id": 0,
         "active": false,
         "completed": true,
-        "name": "Chapter 1",
+        "percentage": 100,
+        "name": "Family",
         "description": "Description of the chapter 1",
         "items": [
             "item1",
@@ -17,7 +18,8 @@
         "id": 1,
         "active": true,
         "completed": false,
-        "name": "Chapter 2",
+        "percentage": 20,
+        "name": "Work",
         "description": "Description of the chapter 2",
         "items": [
             "item1",
@@ -31,7 +33,8 @@
         "id": 2,
         "active": false,
         "completed": false,
-        "name": "Chapter 3",
+        "percentage": 0,
+        "name": "Friends",
         "description": "Description of the chapter 3",
         "items": [
             "item1",

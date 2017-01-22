@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 
-import { ChaptersApiService } from './core/services';
+import { CategoryApiService } from './core/services';
 
 @Injectable()
-export class AppState {
-  constructor (private chaptersApiService: ChaptersApiService) {
+export class AppService {
+  constructor (private categoryApiService: CategoryApiService) {
     this.init();
   }
 
   private init() {
-    // Populates localStorage chapters entry with mocked data if it's empty.
-    if (!this.chaptersApiService.getChapters()) {
+    // Populates localStorage categories entry with mocked data if it's empty.
+    if (!this.categoryApiService.getCategories()) {
       this.populateDataSource();
     }
   }
 
   private populateDataSource() {
-    this.chaptersApiService.fetchChapters().subscribe((res) => {
-      this.chaptersApiService.saveChapters(res);
+    this.categoryApiService.fetchCategories().subscribe((res) => {
+      this.categoryApiService.saveCategories(res);
     });
   }
 }

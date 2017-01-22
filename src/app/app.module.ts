@@ -5,6 +5,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation';
 import { AppRoutingModule } from './app-routing.module';
+import { AppService } from './app.service';
 
 import '../styles/styles.scss';
 
@@ -19,7 +20,7 @@ import '../styles/styles.scss';
     AppRoutingModule,
     CoreModule
   ],
-  providers: []
+  providers: [ AppService ]
 })
 
 export class AppModule {}

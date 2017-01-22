@@ -1,17 +1,16 @@
-.chapter-card-wrapper {
+.category-card-wrapper {
   display: flex;
   align-items: center;
+  margin: 10px 0;
   border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 20px 0;
+  padding: 10px 0;
+  position: relative;
 
   .card-icon {
     font-size: 30px;
   }
 
   .card-content {
-    font-family: 'Arial Narrow';
-
     h3 {
       font-size: 20px;
       margin: 0;
@@ -23,10 +22,18 @@
   }
 
   &.completed {
-    border-color: green;
+    border-color: #63b163;
 
     .card-icon {
-      color: green;
+      color: #63b163;
+    }
+  }
+
+  &.in-progress {
+    border-color: #e6d42f;
+
+    .card-icon {
+      color: #f1dc21;
     }
   }
 }
