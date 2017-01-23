@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { HomeService } from '../home.service';
+import { slideRouteAnimation } from './slide-animation';
 
 @Component({
+  animations: [slideRouteAnimation],
   template: `
     <h2>{{ selectedCategory$.name }} tasks</h2>
     <div class="close"
@@ -19,8 +21,7 @@ import { HomeService } from '../home.service';
 })
 
 export class CategoryDetailComponent implements OnInit {
-  @Input() public category = {};
-  public categoryId: number;
+  @HostBinding('@routeAnimation') public routeAnimation = true;
   public selectedCategory$: Object;
 
   constructor (
@@ -31,9 +32,9 @@ export class CategoryDetailComponent implements OnInit {
   public ngOnInit() {
     this.route.params
               .subscribe((param) => {
-                this.categoryId = parseInt(param.id, 10);
+                let categoryId = parseInt(param.id, 10);
 
-                this.homeService.getSelectedCategory$(this.categoryId)
+                this.homeService.getSelectedCategory$(categoryId)
                                 .subscribe((categories) => {
                                   this.selectedCategory$ = categories[0];
                                 });

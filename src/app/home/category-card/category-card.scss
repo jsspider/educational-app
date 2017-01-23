@@ -1,6 +1,7 @@
 .category-card-wrapper {
   display: flex;
   align-items: center;
+  width: 240px;
   margin: 10px 0;
   border: 2px solid transparent;
   padding: 10px 0;
@@ -12,8 +13,8 @@
 
   .card-content {
     h3 {
-      font-size: 20px;
-      margin: 0;
+      font-size: 22px;
+      margin: 0 0 10px 0;
     }
 
     p {

@@ -14,4 +14,4 @@ export const categories = (state = [], action) => {
     default:
       return state;
   }
-}
+};

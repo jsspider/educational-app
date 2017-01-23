@@ -17,4 +17,10 @@ export class HomeService {
                  return cat.filter((cat) => cat.id === id)
                });
   }
+
+  public isDetailView(url: string) {
+    const detailViewRegExp = /^\/home\/category\/\d+$/;
+
+    return detailViewRegExp.test(url);
+  }
 }
