@@ -1,3 +1,10 @@
+:host {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8%;
+}
+
 .navigation-container {
   height: 100vh;
   background: #222222;
@@ -24,6 +31,7 @@
   }
   &.icons {
     position: relative;
+    overflow: hidden;
 
     .nav-item {
       a {
@@ -58,6 +66,13 @@
     }
   }
   &.links {
+    position: absolute;
+    z-index: 10;
+    display: none;
+    left: 100%;
+    width: 200%;
+    top: 0;
+
     .nav-item {
       a {
         font-size: 1.6vw;

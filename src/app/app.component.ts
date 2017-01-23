@@ -7,10 +7,8 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss'],
   template: `
     <div class="row">
-      <div class="col-sm-3">
-        <ea-navigation></ea-navigation>
-      </div>
-      <div class="col-sm-9">
+      <ea-navigation></ea-navigation>
+      <div class="col-sm-10 col-sm-offset-2">
         <router-outlet></router-outlet>
       </div>
     </div>
