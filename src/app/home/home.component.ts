@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-// import { CategoryListComponent } from './category-list';
+import { HomeService } from './home.service';
 
 @Component({
   template: `
-    <h1>I am home component</h1>
+    <h1>Categorized todo application</h1>
     <div class="col-sm-6">
       <ea-category-list [categories]="categories$ | async"></ea-category-list>
     </div>
-    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <router-outlet></router-outlet>
+    </div>
   `,
-  styleUrls: ['./home.scss']
+  styleUrls: ['./home.scss'],
+  providers: [ HomeService ]
 })
 
 export class HomeComponent implements OnInit {
   public categories$;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private homeService: HomeService) {}
 
   public ngOnInit() {
-    this.categories$ = this.store.select('categories');
+    this.categories$ = this.homeService.getCategories$();
   }
 }

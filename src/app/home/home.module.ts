@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { CategoryListComponent } from './category-list';
 import { CategoryCardComponent } from './category-card';
+import { CategoryDetailComponent } from './category-detail';
+import { CategoryListComponent } from './category-list';
 
 @NgModule({
   imports: [
@@ -13,8 +14,9 @@ import { CategoryCardComponent } from './category-card';
   ],
   declarations: [
     HomeComponent,
-    CategoryListComponent,
-    CategoryCardComponent
+    CategoryCardComponent,
+    CategoryDetailComponent,
+    CategoryListComponent
   ],
   exports: [
     HomeComponent
