@@ -14,11 +14,11 @@ export class CategoryApiService {
       private localStorageService: GenericLocalStorageService
   ) {}
 
-  public getCategories(): Object {
+  public getCategories() {
     return this.localStorageService.getItem(this.categoriesKey);
   }
 
-  public saveCategories(data: Object): void {
+  public saveCategories(data): void {
     this.localStorageService.setItem(this.categoriesKey, data);
   }
 

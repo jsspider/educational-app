@@ -11,6 +11,11 @@
     font-size: 30px;
   }
 
+  h5 {
+    background-color: #bdb374;
+    box-shadow: 3px 3px 5px
+  }
+
   .card-content {
     h3 {
       font-size: 22px;
@@ -18,7 +23,7 @@
     }
 
     p {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 
@@ -27,6 +32,10 @@
 
     .card-icon {
       color: #63b163;
+    }
+
+    h5 {
+      background-color: #95d295;
     }
   }
 

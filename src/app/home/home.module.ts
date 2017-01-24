@@ -6,6 +6,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { CategoryCardComponent } from './category-card';
 import { CategoryDetailComponent } from './category-detail';
 import { CategoryListComponent } from './category-list';
+import { CategoryTaskComponent } from './category-task';
+import { CategoryTasksListComponent } from './category-tasks-list';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { CategoryListComponent } from './category-list';
     HomeComponent,
     CategoryCardComponent,
     CategoryDetailComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryTaskComponent,
+    CategoryTasksListComponent
   ],
   exports: [
     HomeComponent

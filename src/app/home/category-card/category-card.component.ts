@@ -13,6 +13,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
       <div class="col-sm-9 card-content">
         <h3>{{ category.name }}</h3>
         <p>{{ category.description }}</p>
+        <h5>Progress: {{ category.percentage }}%</h5>
       </div>
     </div>
   `,

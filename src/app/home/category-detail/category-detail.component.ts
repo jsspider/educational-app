@@ -7,22 +7,20 @@ import { slideRouteAnimation } from './slide-animation';
 @Component({
   animations: [slideRouteAnimation],
   template: `
-    <h2>{{ selectedCategory$.name }} tasks</h2>
+    <h2>{{ selectedCategory.name }} tasks</h2>
     <div class="close"
         routerLink="/home">
       <i class="glyphicon glyphicon-remove"></i>
     </div>
-    <ul class="list-group">
-      <li class="list-group-item"
-          *ngFor="let task of selectedCategory$.tasks">{{ task.value }}</li>
-    </ul>
+    <ea-category-tasks-list
+        [currCategory]="selectedCategory"></ea-category-tasks-list>
   `,
   styleUrls: ['./category-detail.scss']
 })
 
 export class CategoryDetailComponent implements OnInit {
   @HostBinding('@routeAnimation') public routeAnimation = true;
-  public selectedCategory$: Object;
+  public selectedCategory: Object;
 
   constructor (
     private route: ActivatedRoute,
@@ -36,7 +34,7 @@ export class CategoryDetailComponent implements OnInit {
 
                 this.homeService.getSelectedCategory$(categoryId)
                                 .subscribe((categories) => {
-                                  this.selectedCategory$ = categories[0];
+                                  this.selectedCategory = categories[0];
                                 });
               });
   }
