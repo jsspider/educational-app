@@ -1,28 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { GenericHttpService } from './generic-http.service';
 import { GenericLocalStorageService } from './generic-localStorage.service';
+import { APP_CONFIG, IAppConfig } from '../config';
+import { Category } from '../models';
 
 @Injectable()
 export class CategoryApiService {
-  private categoriesKey: string = 'ea-categories';
-  private mockedCategoriesUrl: string = 'assets/mock-data/mock-data.json';
-
   constructor (
+      @Inject(APP_CONFIG) private config: IAppConfig,
       private httpService: GenericHttpService,
       private localStorageService: GenericLocalStorageService
   ) {}
 
-  public getCategories() {
-    return this.localStorageService.getItem(this.categoriesKey);
+  public getCategories(): Category[] {
+    return this.localStorageService.getItem(this.config.categoriesKey);
   }
 
-  public saveCategories(data): void {
-    this.localStorageService.setItem(this.categoriesKey, data);
+  public saveCategories(data: Category[]): void {
+    this.localStorageService.setItem(this.config.categoriesKey, data);
   }
 
-  public fetchCategories(): Observable<Object[]> {
-    return this.httpService.get(this.mockedCategoriesUrl);
+  public fetchCategories(): Observable<Category[]> {
+    return this.httpService.get(this.config.mockedCategoriesUrl);
   }
 }

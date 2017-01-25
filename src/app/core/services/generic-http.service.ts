@@ -8,10 +8,10 @@ export class GenericHttpService {
 
   public get (url: string, options?: RequestOptions): Observable<Object[]> {
     return this.http.get(url, options)
-                    .map((res: Response) => res.json())
-                    .catch((error: any) => {
-                      return Observable.throw(error.json().error ||
-                          'Server error');
-                    });
-    }
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        return Observable.throw(error.json().error ||
+            'Server error');
+      });
+  }
 }

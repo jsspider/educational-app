@@ -1,10 +1,14 @@
+import { ActionReducer, Action } from '@ngrx/store';
+
+import { Category } from '../../models';
 import { tasks } from './tasks.reducer';
 
-export const categories = (state = [], action) => {
+export const categories: ActionReducer<Category[]> = (
+    state: Category[] = [], action: Action) => {
   let index;
   let currCat;
 
-  switch (action.type){
+  switch (action.type) {
     case 'ADD_CATEGORY':
       return [
         ...state,

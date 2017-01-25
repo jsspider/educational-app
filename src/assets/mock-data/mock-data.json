@@ -1,7 +1,6 @@
 [
     {
         "id": 0,
-        "active": false,
         "completed": true,
         "percentage": 100,
         "name": "Family",
@@ -31,7 +30,6 @@
     },
     {
         "id": 1,
-        "active": true,
         "completed": false,
         "percentage": 20,
         "name": "Work",
@@ -61,7 +59,6 @@
     },
     {
         "id": 2,
-        "active": false,
         "completed": false,
         "percentage": 0,
         "name": "Friends",

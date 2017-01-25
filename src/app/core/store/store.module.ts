@@ -3,7 +3,7 @@ import { StoreModule } from '@ngrx/store';
 import { combineReducers, INITIAL_STATE } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
 
-import { categories } from './categories.reducer';
+import { categories } from './reducers';
 import { StoreService } from './store.service';
 
 @NgModule({
