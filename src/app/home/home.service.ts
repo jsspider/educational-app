@@ -36,7 +36,8 @@ export class HomeService {
   }
 
   public completeTask(category, taskIndex) {
-    const updatedPercentage = this.getUpdatedPercentage(category, 1);
+    const updatedPercentage = this.getUpdatedPercentage(category, taskIndex,
+        'COMPLETION');
     const completed = updatedPercentage === 100;
 
     this.store.dispatch({type: 'COMPLETE_TASK', payload: {
@@ -47,12 +48,40 @@ export class HomeService {
     }});
   }
 
-  private getUpdatedPercentage(category, offset = 0) {
+  public removeTask(category, taskIndex) {
+    const updatedPercentage = this.getUpdatedPercentage(category, taskIndex,
+        'REMOVAL');
+    const completed = updatedPercentage === 100;
+
+    this.store.dispatch({type: 'REMOVE_TASK', payload: {
+      categoryId : category.id,
+      completed,
+      taskIndex,
+      updatedPercentage
+    }});
+  }
+
+  private getUpdatedPercentage(category, taskIndex, operationType) {
     const currCompletedTasksCount = category.tasks.filter((task) => {
       return task.completed;
     }).length;
+    let updCompletedTasksCount;
 
-    return Math.round((currCompletedTasksCount + offset) /
-        category.tasks.length * 100);
+    switch (operationType) {
+      case 'COMPLETION':
+        updCompletedTasksCount = currCompletedTasksCount + 1;
+
+        return Math.round(updCompletedTasksCount /
+            category.tasks.length * 100);
+      case 'REMOVAL':
+        updCompletedTasksCount = category.tasks[taskIndex].completed ?
+            currCompletedTasksCount - 1 :
+            currCompletedTasksCount;
+
+        return Math.round((updCompletedTasksCount) /
+            (category.tasks.length - 1) * 100) || 0;
+      default:
+        return category.percentage;
+    }
   }
 }

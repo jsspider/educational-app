@@ -1,6 +1,9 @@
 import { tasks } from './tasks.reducer';
 
 export const categories = (state = [], action) => {
+  let index;
+  let currCat;
+
   switch (action.type){
     case 'ADD_CATEGORY':
       return [
@@ -14,10 +17,10 @@ export const categories = (state = [], action) => {
         })
       ];
     case 'COMPLETE_TASK':
-      const index = state.findIndex((cat) => {
+      index = state.findIndex((cat) => {
         return cat.id === action.payload.categoryId;
       });
-      const currCat = state[index];
+      currCat = state[index];
 
       return [
         ...state.slice(0, index),
@@ -26,6 +29,24 @@ export const categories = (state = [], action) => {
           percentage: action.payload.updatedPercentage,
           tasks: tasks(currCat.tasks, {
             type: 'COMPLETE_TASK',
+            payload: {index: action.payload.taskIndex}
+          })
+        }),
+        ...state.slice(index + 1)
+      ];
+    case 'REMOVE_TASK':
+      index = state.findIndex((cat) => {
+        return cat.id === action.payload.categoryId;
+      });
+      currCat = state[index];
+
+      return [
+        ...state.slice(0, index),
+        Object.assign({}, currCat, {
+          completed: action.payload.completed,
+          percentage: action.payload.updatedPercentage,
+          tasks: tasks(currCat.tasks, {
+            type: 'REMOVE_TASK',
             payload: {index: action.payload.taskIndex}
           })
         }),

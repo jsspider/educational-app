@@ -15,6 +15,8 @@ import {
         <button class="btn btn-success"
             *ngIf="!task.completed"
             (click)="onDoneClick()">Done</button>
+        <button class="btn btn-danger"
+            (click)="onRemoveClick()">Remove</button>
       </div>
     </li>
   `,
@@ -25,8 +27,13 @@ import {
 export class CategoryTaskComponent {
   @Input() public task = {};
   @Output() public completed = new EventEmitter();
+  @Output() public removed = new EventEmitter();
 
   public onDoneClick() {
     this.completed.emit();
+  }
+
+  public onRemoveClick() {
+    this.removed.emit();
   }
 }

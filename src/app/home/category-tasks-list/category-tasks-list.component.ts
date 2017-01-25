@@ -10,7 +10,8 @@ import { HomeService } from '../home.service';
       <ea-category-task
           *ngFor="let task of currCategory.tasks; let i = index"
           [task]="task"
-          (completed)="onTaskCompletion(i)"></ea-category-task>
+          (completed)="onTaskCompletion(i)"
+          (removed)="onTaskRemoved(i)"></ea-category-task>
     </ul>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,5 +24,9 @@ export class CategoryTasksListComponent {
 
   public onTaskCompletion(taskIndex) {
     this.homeService.completeTask(this.currCategory, taskIndex);
+  }
+
+  public onTaskRemoved(taskIndex) {
+    this.homeService.removeTask(this.currCategory, taskIndex);
   }
 }
