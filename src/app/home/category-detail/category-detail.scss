@@ -14,3 +14,12 @@
 h2 {
   margin-top: 0;
 }
+
+.btn-wrapper {
+  text-align: right;
+
+  .add-new {
+    text-transform: uppercase;
+    padding: 8px 40px;
+  }
+}

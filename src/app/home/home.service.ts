@@ -30,58 +30,29 @@ export class HomeService {
   }
 
   public isDetailView(url: string) {
-    const detailViewRegExp = /^\/home\/category\/\d+$/;
+    const detailViewRegExp = /^\/home\/category\/\d+/;
 
     return detailViewRegExp.test(url);
   }
 
-  public completeTask(category, taskIndex) {
-    const updatedPercentage = this.getUpdatedPercentage(category, taskIndex,
-        'COMPLETION');
-    const completed = updatedPercentage === 100;
-
+  public completeTask(categoryId, taskIndex) {
     this.store.dispatch({type: 'COMPLETE_TASK', payload: {
-      categoryId : category.id,
-      completed,
-      taskIndex,
-      updatedPercentage
+      categoryId,
+      taskIndex
     }});
   }
 
-  public removeTask(category, taskIndex) {
-    const updatedPercentage = this.getUpdatedPercentage(category, taskIndex,
-        'REMOVAL');
-    const completed = updatedPercentage === 100;
-
+  public removeTask(categoryId, taskIndex) {
     this.store.dispatch({type: 'REMOVE_TASK', payload: {
-      categoryId : category.id,
-      completed,
-      taskIndex,
-      updatedPercentage
+      categoryId,
+      taskIndex
     }});
   }
 
-  private getUpdatedPercentage(category, taskIndex, operationType) {
-    const currCompletedTasksCount = category.tasks.filter((task) => {
-      return task.completed;
-    }).length;
-    let updCompletedTasksCount;
-
-    switch (operationType) {
-      case 'COMPLETION':
-        updCompletedTasksCount = currCompletedTasksCount + 1;
-
-        return Math.round(updCompletedTasksCount /
-            category.tasks.length * 100);
-      case 'REMOVAL':
-        updCompletedTasksCount = category.tasks[taskIndex].completed ?
-            currCompletedTasksCount - 1 :
-            currCompletedTasksCount;
-
-        return Math.round((updCompletedTasksCount) /
-            (category.tasks.length - 1) * 100) || 0;
-      default:
-        return category.percentage;
-    }
+  public addTask(categoryId, taskDescr) {
+    this.store.dispatch({type: 'ADD_TASK', payload: {
+      categoryId,
+      taskDescr
+    }});
   }
 }

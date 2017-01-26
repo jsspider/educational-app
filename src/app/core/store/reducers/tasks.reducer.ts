@@ -17,6 +17,14 @@ export const tasks = (state, action) => {
         ...state.slice(0, taskIndex),
         ...state.slice(taskIndex + 1)
       ];
+    case 'ADD_TASK':
+      return [
+        ...state,
+        {
+          completed: false,
+          value: action.payload.taskDescr
+        }
+      ];
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { CategoryDetailComponent } from './category-detail';
+import { CategoryTaskEditComponent } from './category-task-edit';
 
 @NgModule({
   imports: [
@@ -11,7 +12,16 @@ import { CategoryDetailComponent } from './category-detail';
         path: '',
         component: HomeComponent,
         children: [
-          { path: 'category/:id', component: CategoryDetailComponent }
+          {
+            path: 'category/:id',
+            component: CategoryDetailComponent,
+            children: [
+              {
+                path: 'task/new',
+                component: CategoryTaskEditComponent
+              }
+            ]
+          },
         ]
       }
     ])

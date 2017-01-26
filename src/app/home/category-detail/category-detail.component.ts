@@ -14,6 +14,11 @@ import { slideRouteAnimation } from './slide-animation';
     </div>
     <ea-category-tasks-list
         [currCategory]="selectedCategory"></ea-category-tasks-list>
+    <div class="btn-wrapper">
+      <button class="btn btn-success add-new"
+          [routerLink]="['task/new']">Add new</button>
+    </div>
+    <router-outlet></router-outlet>
   `,
   styleUrls: ['./category-detail.scss']
 })
@@ -30,7 +35,7 @@ export class CategoryDetailComponent implements OnInit {
   public ngOnInit() {
     this.route.params
               .subscribe((param) => {
-                let categoryId = parseInt(param.id, 10);
+                let categoryId = parseInt(param['id'], 10);
 
                 this.homeService.getSelectedCategory$(categoryId)
                                 .subscribe((categories) => {

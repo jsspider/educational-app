@@ -23,10 +23,10 @@ export class CategoryTasksListComponent {
   constructor(private homeService: HomeService) {}
 
   public onTaskCompletion(taskIndex) {
-    this.homeService.completeTask(this.currCategory, taskIndex);
+    this.homeService.completeTask(this.currCategory['id'], taskIndex);
   }
 
   public onTaskRemoved(taskIndex) {
-    this.homeService.removeTask(this.currCategory, taskIndex);
+    this.homeService.removeTask(this.currCategory['id'], taskIndex);
   }
 }
