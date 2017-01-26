@@ -18,7 +18,13 @@ import { CategoryTaskEditComponent } from './category-task-edit';
             children: [
               {
                 path: 'task/new',
-                component: CategoryTaskEditComponent
+                component: CategoryTaskEditComponent,
+                data: { operationType: 'adding' }
+              },
+              {
+                path: 'task/edit/:id',
+                component: CategoryTaskEditComponent,
+                data: { operationType: 'editing'}
               }
             ]
           },

@@ -55,4 +55,12 @@ export class HomeService {
       taskDescr
     }});
   }
+
+  public editTask(categoryId, taskIndex, taskDescr) {
+    this.store.dispatch({type: 'EDIT_TASK', payload: {
+      categoryId,
+      taskIndex,
+      taskDescr
+    }});
+  }
 }

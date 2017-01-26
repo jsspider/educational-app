@@ -25,6 +25,14 @@ export const tasks = (state, action) => {
           value: action.payload.taskDescr
         }
       ];
+    case 'EDIT_TASK':
+      return [
+        ...state.slice(0, action.payload.taskIndex),
+        Object.assign({}, state[action.payload.taskIndex], {
+          value: action.payload.taskDescr
+        }),
+        ...state.slice(action.payload.taskIndex + 1),
+      ]
     default:
       return state;
   }
