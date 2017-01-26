@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { HomeService } from '../home.service';
 
@@ -10,6 +11,7 @@ import { HomeService } from '../home.service';
       <ea-category-task
           *ngFor="let task of currCategory.tasks; let i = index"
           [task]="task"
+          (dblclick)="initTaskEditing(i)"
           (completed)="onTaskCompletion(i)"
           (removed)="onTaskRemoved(i)"></ea-category-task>
     </ul>
@@ -20,13 +22,22 @@ import { HomeService } from '../home.service';
 export class CategoryTasksListComponent {
   @Input() public currCategory = {};
 
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   public onTaskCompletion(taskIndex) {
     this.homeService.completeTask(this.currCategory['id'], taskIndex);
   }
 
   public onTaskRemoved(taskIndex) {
+    debugger;
     this.homeService.removeTask(this.currCategory['id'], taskIndex);
+  }
+
+  public initTaskEditing(i) {
+    console.log('I am double clicked');
+    this.router.navigate(['task/edit/', i], { relativeTo: this.route });
   }
 }

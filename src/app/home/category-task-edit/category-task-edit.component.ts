@@ -8,27 +8,32 @@ import { HomeService } from '../home.service';
     <form (ngSubmit)="onSubmit(form)"
           #form="ngForm">
       <div class="form-group">
-        <label for="task-description">Add new task</label>
+        <label for="task-description" [ngSwitch]="editingMode">
+          <span *ngSwitchCase="true">Edit task</span>
+          <span *ngSwitchDefault>Add new task</span>
+        </label>
         <input type="text"
             class="form-control"
             name="description"
             id="task-description"
-            ngModel
+            [ngModel]="taskDescr"
             required>
         <div class="action-buttons">
           <button class="btn btn-success">Save</button>
           <button class="btn btn-danger"
-              (click)="onCancelClick()">Cancel</button>
+              (click)="onCancelClick($event)">Cancel</button>
         </div>
       </div>
     </form>
   `,
-  styleUrls: ['./category-task-edit.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./category-task-edit.scss']
 })
 
 export class CategoryTaskEditComponent implements OnInit {
+  public editingMode: boolean = false;
+  public taskDescr: string = '';
   private categoryId: number;
+  private taskIndex: number;
 
   constructor(
     private router: Router,
@@ -37,14 +42,35 @@ export class CategoryTaskEditComponent implements OnInit {
 
   public ngOnInit() {
     this.categoryId = parseInt(this.route.snapshot.parent.params['id'], 10);
+
+    if (this.route.snapshot.data['operationType'] === 'editing') {
+      this.editingMode = true;
+
+      this.route.params
+        .subscribe((param) => {
+          this.taskIndex = parseInt(param['id'], 10);
+
+          this.homeService.getSelectedCategory$(this.categoryId)
+            .subscribe((categories) => {
+              this.taskDescr = categories[0].tasks[this.taskIndex].value;
+            });
+        });
+    }
   }
 
   public onSubmit(form) {
-    this.homeService.addTask(this.categoryId, form.value.description);
+    if (this.editingMode) {
+      this.homeService.editTask(this.categoryId, this.taskIndex,
+          form.value.description);
+    } else {
+      this.homeService.addTask(this.categoryId, form.value.description);
+    }
     this.router.navigate(['/home/category', this.categoryId]);
   }
 
-  public onCancelClick() {
+  public onCancelClick(e) {
+    e.preventDefault();
+    console.log(this.categoryId);
     this.router.navigate(['/home/category', this.categoryId]);
   }
 }

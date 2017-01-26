@@ -69,6 +69,25 @@ export const categories: ActionReducer<Category[]> = (
         )),
         ...state.slice(index + 1)
       ]
+    case 'EDIT_TASK':
+      index = state.findIndex((cat) => {
+        return cat.id === action.payload.categoryId;
+      });
+      currCat = state[index];
+
+      return [
+        ...state.slice(0, index),
+        Object.assign({}, currCat, {
+          tasks: tasks(currCat.tasks, {
+            type: 'EDIT_TASK',
+            payload: {
+              taskIndex: action.payload.taskIndex,
+              taskDescr: action.payload.taskDescr
+            }
+          })
+        }),
+        ...state.slice(index + 1)
+      ]
     default:
       return state;
   }
