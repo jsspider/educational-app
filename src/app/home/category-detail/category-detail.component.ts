@@ -14,6 +14,8 @@ import { slideRouteAnimation } from './slide-animation';
     </div>
     <ea-category-tasks-list
         [currCategory]="selectedCategory"></ea-category-tasks-list>
+    <h5 class="pull-left alert-info"
+        *ngIf="selectedCategory.tasks.length">* Double click to edit</h5>
     <div class="btn-wrapper">
       <button class="btn btn-success add-new"
           [routerLink]="['task/new']">Add new</button>
