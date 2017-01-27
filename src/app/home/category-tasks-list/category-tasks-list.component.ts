@@ -32,12 +32,10 @@ export class CategoryTasksListComponent {
   }
 
   public onTaskRemoved(taskIndex) {
-    debugger;
     this.homeService.removeTask(this.currCategory['id'], taskIndex);
   }
 
   public initTaskEditing(i) {
-    console.log('I am double clicked');
     this.router.navigate(['task/edit/', i], { relativeTo: this.route });
   }
 }
