@@ -15,8 +15,7 @@ import { HomeService } from './home.service';
       <router-outlet></router-outlet>
     </div>
   `,
-  styleUrls: ['./home.scss'],
-  providers: [ HomeService ]
+  styleUrls: ['./home.scss']
 })
 
 export class HomeComponent implements OnInit {

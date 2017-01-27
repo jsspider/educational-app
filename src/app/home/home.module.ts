@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home.component';
+import { HomeService } from './home.service';
 import { HomeRoutingModule } from './home-routing.module';
 import { CategoryCardComponent } from './category-card';
 import { CategoryDetailComponent } from './category-detail';
 import { CategoryListComponent } from './category-list';
 import { CategoryTaskComponent } from './category-task';
-import { CategoryTaskEditComponent } from './category-task-edit';
+import {
+  CategoryTaskEditComponent,
+  CategoryTaskEditResolve
+} from './category-task-edit';
 import { CategoryTasksListComponent } from './category-tasks-list';
 
 @NgModule({
@@ -29,7 +33,10 @@ import { CategoryTasksListComponent } from './category-tasks-list';
   exports: [
     HomeComponent
   ],
-  providers: []
+  providers: [
+    CategoryTaskEditResolve,
+    HomeService
+  ]
 })
 
 export class HomeModule { }

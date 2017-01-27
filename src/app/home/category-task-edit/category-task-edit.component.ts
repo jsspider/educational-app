@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { HomeService } from '../home.service';
+import { Category } from '../../core/models';
 
 @Component({
   template: `
@@ -29,11 +30,12 @@ import { HomeService } from '../home.service';
   styleUrls: ['./category-task-edit.scss']
 })
 
-export class CategoryTaskEditComponent implements OnInit {
-  public editingMode: boolean = false;
+export class CategoryTaskEditComponent implements OnInit, OnDestroy {
+  public editingMode: boolean;
   public taskDescr: string = '';
-  private categoryId: number;
   private taskIndex: number;
+  private selCategory: Category;
+  private sub: any;
 
   constructor(
     private router: Router,
@@ -41,36 +43,34 @@ export class CategoryTaskEditComponent implements OnInit {
     private homeService: HomeService) {}
 
   public ngOnInit() {
-    this.categoryId = parseInt(this.route.snapshot.parent.params['id'], 10);
+    this.editingMode = this.route.snapshot.data['operationType'] === 'editing';
+    this.selCategory = this.route.snapshot.data['selCategory'][0];
 
-    if (this.route.snapshot.data['operationType'] === 'editing') {
-      this.editingMode = true;
+    this.sub = this.route.params.subscribe((param) => {
+      this.taskIndex = parseInt(param['id'], 10);
 
-      this.route.params
-        .subscribe((param) => {
-          this.taskIndex = parseInt(param['id'], 10);
-
-          this.homeService.getSelectedCategory$(this.categoryId)
-            .subscribe((categories) => {
-              this.taskDescr = categories[0].tasks[this.taskIndex].value;
-            });
-        });
-    }
+      if (this.route.snapshot.data['operationType'] === 'editing') {
+        this.taskDescr = this.selCategory.tasks[this.taskIndex].value;
+      }
+    });
   }
 
   public onSubmit(form) {
     if (this.editingMode) {
-      this.homeService.editTask(this.categoryId, this.taskIndex,
+      this.homeService.editTask(this.selCategory.id, this.taskIndex,
           form.value.description);
     } else {
-      this.homeService.addTask(this.categoryId, form.value.description);
+      this.homeService.addTask(this.selCategory.id, form.value.description);
     }
-    this.router.navigate(['/home/category', this.categoryId]);
+    this.router.navigate(['/home/category', this.selCategory.id]);
   }
 
-  public onCancelClick(e) {
-    e.preventDefault();
-    console.log(this.categoryId);
-    this.router.navigate(['/home/category', this.categoryId]);
+  public onCancelClick(event) {
+    event.preventDefault();
+    this.router.navigate(['/home/category', this.selCategory.id]);
+  }
+
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
