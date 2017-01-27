@@ -1,13 +1,18 @@
-export const tasks = (state, action) => {
+import { ActionReducer, Action } from '@ngrx/store';
+
+import { Category } from '../../models';
+import { Task } from '../../models';
+
+export const tasks: ActionReducer<Task[]> = (state: Task[], action: Action) => {
   let taskIndex;
 
-  switch (action.type){
+  switch (action.type) {
     case 'COMPLETE_TASK':
       taskIndex = action.payload.index;
 
       return [
         ...state.slice(0, taskIndex),
-        Object.assign({}, state[taskIndex], {completed: true}),
+        Object.assign({}, state[taskIndex], { completed: true }),
         ...state.slice(taskIndex + 1)
       ];
     case 'REMOVE_TASK':

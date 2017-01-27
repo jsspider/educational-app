@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { combineReducers, INITIAL_STATE } from '@ngrx/store';
-import { compose } from '@ngrx/core/compose';
+import { INITIAL_STATE } from '@ngrx/store';
 
 import { categories } from './reducers';
 import { StoreService } from './store.service';
 
 @NgModule({
-  imports: [
-    StoreModule.provideStore({ categories })
-  ],
+  imports: [StoreModule.provideStore({ categories })],
   declarations: [],
   exports: [],
   providers: [
@@ -17,7 +14,7 @@ import { StoreService } from './store.service';
     {
       provide: INITIAL_STATE,
       useFactory(storeService: StoreService) {
-        return {categories: storeService.getInitialState()};
+        return { categories: storeService.getInitialState() };
       },
       deps: [StoreService]
     }
