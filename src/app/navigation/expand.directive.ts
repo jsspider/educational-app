@@ -1,22 +1,18 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input,
+    OnInit } from '@angular/core';
 
 @Directive({
   selector: '[ea-expand]'
 })
-export class ExpandDirective implements OnInit{
+
+export class ExpandDirective implements OnInit {
   @Input() private targetElSelector: string = '.collapsable';
   private targetEl;
 
   constructor(private el: ElementRef) { }
 
   public ngOnInit() {
-    this.targetEl = this.el.nativeElement.querySelector(this.targetElSelector)
+    this.targetEl = this.el.nativeElement.querySelector(this.targetElSelector);
   }
 
   @HostListener('mouseenter') private onMouseEnter() {

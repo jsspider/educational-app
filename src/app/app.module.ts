@@ -11,7 +11,7 @@ import { AppService } from './app.service';
 import '../styles/styles.scss';
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     ExpandDirective,
@@ -22,7 +22,7 @@ import '../styles/styles.scss';
     AppRoutingModule,
     CoreModule
   ],
-  providers: [ AppService ]
+  providers: [AppService]
 })
 
-export class AppModule {}
+export class AppModule { }

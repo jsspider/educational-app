@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CategoryApiService } from './core/services';
+import { Category } from './core/models';
 
 @Injectable()
 export class AppService {
@@ -16,7 +17,7 @@ export class AppService {
   }
 
   private populateDataSource() {
-    this.categoryApiService.fetchCategories().subscribe((res) => {
+    this.categoryApiService.fetchCategories().subscribe((res: Category[]) => {
       this.categoryApiService.saveCategories(res);
     });
   }
