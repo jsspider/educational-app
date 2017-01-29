@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   template: `
     <h1>Settings page</h1>
   `,
-  styleUrls: ['./settings.scss']
+  styleUrls: ['./settings.component.scss']
 })
 
 export class SettingsComponent { }

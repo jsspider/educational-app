@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home.component';
-import { CategoryDetailComponent } from './category-detail';
-import {
-  CategoryTaskEditComponent,
-  CategoryTaskEditResolve
-} from './category-task-edit';
+import { CategoryDetailComponent, HomeComponent, TaskModifyComponent,
+    TaskModifyResolve } from './';
 
 @NgModule({
   imports: [
@@ -21,18 +17,18 @@ import {
             children: [
               {
                 path: 'task/new',
-                component: CategoryTaskEditComponent,
+                component: TaskModifyComponent,
                 data: { operationType: 'adding' },
                 resolve: {
-                  selCategory: CategoryTaskEditResolve
+                  selCategory: TaskModifyResolve
                 }
               },
               {
                 path: 'task/edit/:id',
-                component: CategoryTaskEditComponent,
+                component: TaskModifyComponent,
                 data: { operationType: 'editing'},
                 resolve: {
-                  selCategory: CategoryTaskEditResolve
+                  selCategory: TaskModifyResolve
                 }
               }
             ]
