@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { HomeService } from '../home.service';
+
+import { HomeService } from '../../home.service';
 
 @Injectable()
-export class CategoryTaskEditResolve implements Resolve<any> {
+export class TaskModifyResolve implements Resolve<any> {
   constructor(private homeService: HomeService) {}
 
   public resolve(route: ActivatedRouteSnapshot) {

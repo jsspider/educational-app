@@ -1,33 +1,19 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { Category } from '../../core/models';
 import { HomeService } from '../home.service';
 import { slideRouteAnimation } from './slide-animation';
 
 @Component({
   animations: [slideRouteAnimation],
-  template: `
-    <h2>{{ selectedCategory.name }} tasks</h2>
-    <div class="close"
-        routerLink="/home">
-      <i class="glyphicon glyphicon-remove"></i>
-    </div>
-    <ea-category-tasks-list
-        [currCategory]="selectedCategory"></ea-category-tasks-list>
-    <h5 class="pull-left alert-info"
-        *ngIf="selectedCategory.tasks.length">* Double click to edit</h5>
-    <div class="btn-wrapper">
-      <button class="btn btn-success add-new"
-          [routerLink]="['task/new']">Add new</button>
-    </div>
-    <router-outlet></router-outlet>
-  `,
-  styleUrls: ['./category-detail.scss']
+  templateUrl: './category-detail.component.html',
+  styleUrls: ['./category-detail.component.scss']
 })
 
 export class CategoryDetailComponent implements OnInit {
   @HostBinding('@routeAnimation') public routeAnimation = true;
-  public selectedCategory: Object;
+  public selectedCategory: Category;
 
   constructor (
     private route: ActivatedRoute,
@@ -36,13 +22,13 @@ export class CategoryDetailComponent implements OnInit {
 
   public ngOnInit() {
     this.route.params
-              .subscribe((param) => {
-                let categoryId = parseInt(param['id'], 10);
+      .subscribe((param) => {
+        let categoryId = parseInt(param['id'], 10);
 
-                this.homeService.getSelectedCategory$(categoryId)
-                                .subscribe((categories) => {
-                                  this.selectedCategory = categories[0];
-                                });
-              });
+        this.homeService.getSelectedCategory$(categoryId)
+          .subscribe((category: Category) => {
+            this.selectedCategory = category;
+          });
+      });
   }
 }

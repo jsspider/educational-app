@@ -1,66 +1,71 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { CategoryApiService } from '../core/services';
+import { AppState } from '../core/store';
+import { Category } from '../core/models';
 
 @Injectable()
 export class HomeService {
-  private categories$ = this.store.select('categories');
+  private categories$: Observable<Category[]> = this.store.select('categories');
 
   constructor(
-    private store: Store,
+    private store: Store<AppState>,
     private categoryApiService: CategoryApiService
   ) {
     // TODO: Needs rethinking when and where we should interact with the db.
-    this.categories$.subscribe((cat) => {
-      this.categoryApiService.saveCategories(cat);
-    })
+    this.categories$.subscribe((categories: Category[]) => {
+      this.categoryApiService.saveCategories(categories);
+    });
   }
 
-  public getCategories$() {
+  public getCategories$(): Observable<Category[]> {
     return this.categories$;
   }
 
-  // TODO: Consider simplifying it by using one of RxJS functions.
-  public getSelectedCategory$(id: number) {
+  public getSelectedCategory$(id: number): Observable<Category> {
     return this.categories$
-               .map((cat) => {
-                 return cat.filter((cat) => cat.id === id)
-               });
+      .flatMap((categories: Category[]) => {
+        return Observable.from(categories);
+      })
+      .filter((category: Category) => {
+        return category.id === id;
+      });
   }
 
-  public isDetailView(url: string) {
+  public isDetailView(url: string): boolean {
     const detailViewRegExp = /^\/home\/category\/\d+/;
 
     return detailViewRegExp.test(url);
   }
 
-  public completeTask(categoryId, taskIndex) {
-    this.store.dispatch({type: 'COMPLETE_TASK', payload: {
-      categoryId,
-      taskIndex
-    }});
-  }
-
-  public removeTask(categoryId, taskIndex) {
-    this.store.dispatch({type: 'REMOVE_TASK', payload: {
-      categoryId,
-      taskIndex
-    }});
-  }
-
-  public addTask(categoryId, taskDescr) {
+  public addTask(categoryId: number, taskDescr: string) {
     this.store.dispatch({type: 'ADD_TASK', payload: {
       categoryId,
       taskDescr
     }});
   }
 
-  public editTask(categoryId, taskIndex, taskDescr) {
+  public completeTask(categoryId: number, taskIndex: number) {
+    this.store.dispatch({type: 'COMPLETE_TASK', payload: {
+      categoryId,
+      taskIndex
+    }});
+  }
+
+  public editTask(categoryId: number, taskIndex: number, taskDescr: string) {
     this.store.dispatch({type: 'EDIT_TASK', payload: {
       categoryId,
       taskIndex,
       taskDescr
+    }});
+  }
+
+  public removeTask(categoryId: number, taskIndex: number) {
+    this.store.dispatch({type: 'REMOVE_TASK', payload: {
+      categoryId,
+      taskIndex
     }});
   }
 }

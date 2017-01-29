@@ -1,11 +1,5 @@
-import {
-  animate,
-  AnimationEntryMetadata,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/core';
+import { animate, AnimationEntryMetadata, state, style, transition,
+    trigger } from '@angular/core';
 
 export const slideRouteAnimation: AnimationEntryMetadata =
   trigger('routeAnimation', [
